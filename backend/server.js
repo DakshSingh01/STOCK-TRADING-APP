@@ -4,6 +4,7 @@ const cors=require("cors");
 const morgan=require("morgan");
 require("dotenv").config();
 
+
 const app=express();
 app.use(express.json());
 app.use(cors());
@@ -20,3 +21,12 @@ app.use("/api/portfolio",require("./routes/portfolioRoutes"));
 app.use("/api/watchlist",require("./routes/watchlistRoutes"));
 
 app.listen(process.env.PORT,()=>console.log("Enterprise Server running"));
+
+const path = require("path");
+
+// Serve React build
+app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+});
