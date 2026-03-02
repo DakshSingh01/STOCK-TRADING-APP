@@ -24,9 +24,8 @@ app.listen(process.env.PORT,()=>console.log("Enterprise Server running"));
 
 const path = require("path");
 
-// Serve React build
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join(__dirname, "frontend", "build")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
+  res.sendFile(path.join(__dirname, "frontend", "build", "index.html"));
 });
